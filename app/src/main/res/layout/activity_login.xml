@@ -15,13 +15,15 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
         android:ems="10"
-        android:hint="Email"
-        app:layout_constraintVertical_chainStyle="packed"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@id/etPassword"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -31,19 +33,21 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="40dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/etEmail"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
-        android:text="LOGIN"
+        android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

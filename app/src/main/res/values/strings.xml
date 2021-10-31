@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">assignment</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
+    <string name="go_to_login">Go To Login</string>
+    <string name="register">REGISTER</string>
+    <string name="e_mail">E-mail</string>
+    <string name="email">Email</string>
+
+    <string name="login">LOGIN</string>
 </resources>

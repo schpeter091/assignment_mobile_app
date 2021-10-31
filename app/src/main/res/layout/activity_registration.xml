@@ -15,8 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:hint="@string/e_mail"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/etFirstName"
@@ -24,8 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName" />
+        android:hint="@string/first_name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:importantForAutofill="no" />
 
 
     <EditText
@@ -34,8 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ems="10"
-        android:hint="Last Name"
-        android:inputType="textPersonName" />
+        android:hint="@string/last_name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -43,20 +49,22 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="136dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="REGISTER" />
+        android:text="@string/register" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Go To Login" />
+        android:text="@string/go_to_login" />
 </LinearLayout>

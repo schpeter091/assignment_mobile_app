@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PatternMatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,6 +41,47 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateData();
+            }
+        });
+
+    }
+
+
+    private boolean validateData(){
+        if(etEmail.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter email address.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches()){
+            Toast.makeText(this, "Please enter valid email address.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(etFirstName.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter your first name!", Toast.LENGTH_LONG).show();
+            return false;
+
+        }
+        if(etLastName.getText().toString().isEmpty()){
+
+                Toast.makeText(this, "Please enter your last name!", Toast.LENGTH_LONG).show();
+                return false;
+        }
+
+        if(etPassword.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter your password!", Toast.LENGTH_LONG).show();
+            return false;
+
+        }
+        if(etPassword.getText().length() < 6 ) {
+            Toast.makeText(this, "Your password must be minimum 6 character long", Toast.LENGTH_LONG).show();
+
+        }
+
+        return true;
     }
 
 

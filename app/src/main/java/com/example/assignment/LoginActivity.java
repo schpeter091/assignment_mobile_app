@@ -2,6 +2,7 @@ package com.example.assignment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -27,7 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateData();
+               boolean isDataValid = validateData();
+               if (isDataValid){
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+
+               }
             }
         });
 
@@ -48,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         if(etPassword.getText().length() < 6 ) {
             Toast.makeText(this, "Your password must be minimum 6 character long", Toast.LENGTH_LONG).show();
-
+        return false;
         }
 
 

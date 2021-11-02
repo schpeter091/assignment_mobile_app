@@ -16,6 +16,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     Button btnRegister, btnLogin;
     EditText etEmail, etFirstName, etLastName, etPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,46 +45,49 @@ public class RegistrationActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateData();
+              boolean  isDataValid =  validateData();
+              if(isDataValid){
+                  Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+                  startActivity(intent);
+              }
             }
         });
 
     }
 
 
-    private boolean validateData(){
-        if(etEmail.getText().toString().isEmpty()){
+    private boolean validateData() {
+        if (etEmail.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter email address.", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches()) {
             Toast.makeText(this, "Please enter valid email address.", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(etFirstName.getText().toString().isEmpty()){
+        if (etFirstName.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter your first name!", Toast.LENGTH_LONG).show();
             return false;
 
         }
-        if(etLastName.getText().toString().isEmpty()){
+        if (etLastName.getText().toString().isEmpty()) {
 
-                Toast.makeText(this, "Please enter your last name!", Toast.LENGTH_LONG).show();
-                return false;
+            Toast.makeText(this, "Please enter your last name!", Toast.LENGTH_LONG).show();
+            return false;
         }
 
-        if(etPassword.getText().toString().isEmpty()){
+        if (etPassword.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please enter your password!", Toast.LENGTH_LONG).show();
             return false;
 
         }
-        if(etPassword.getText().length() < 6 ) {
+        if (etPassword.getText().length() < 6) {
             Toast.makeText(this, "Your password must be minimum 6 character long", Toast.LENGTH_LONG).show();
-
+            return false;
         }
 
         return true;
     }
-
 
 
 }

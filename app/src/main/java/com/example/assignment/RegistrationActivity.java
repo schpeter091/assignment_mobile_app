@@ -30,7 +30,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();//initializing the FB auth object
 
         etEmail = findViewById(R.id.etEmail); //initializing the view
         etFirstName = findViewById(R.id.etFirstName); //initializing the view

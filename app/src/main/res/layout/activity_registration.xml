@@ -27,7 +27,7 @@
         android:hint="@string/e_mail"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:autofillHints="" />
+         />
 
     <EditText
         android:id="@+id/etFirstName"
@@ -52,7 +52,7 @@
         android:hint="@string/last_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:autofillHints="" />
+        />
 
     <EditText
         android:id="@+id/etPassword"
@@ -63,7 +63,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:autofillHints="" />
+         />
 
     <Button
         android:id="@+id/btnRegister"

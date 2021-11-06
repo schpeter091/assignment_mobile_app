@@ -8,22 +8,29 @@ import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.assignment.model.UserData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
 
     Button btnRegister, btnLogin;
     EditText etEmail, etFirstName, etLastName, etPassword;
+    Spinner spinner;
     private FirebaseAuth mAuth;
-
+    String[] userTypes =  new String[]{"Select the usertype","User","Admin","Critic"};//creating a list
 
 
     @Override
@@ -39,6 +46,10 @@ public class RegistrationActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);   // R means resource or res
         btnRegister = findViewById(R.id.btnRegister);   // R means resource or res
         btnLogin = findViewById(R.id.btnLogin);
+        spinner = findViewById(R.id.spinner);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line,userTypes);//connect to our list with spinner
+        spinner.setAdapter(arrayAdapter);
 
         //context, activity lifecycle,intent
 
@@ -68,9 +79,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete (@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
-                        startActivity(intent);
+                      saveData(task.getResult().getUser().getUid());
                     }
                     else{
                         Toast.makeText(RegistrationActivity.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
@@ -114,6 +123,33 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    private void saveData(String userId){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        UserData userData = new UserData();
+        userData.setFirstName(etFirstName.getText().toString());
+        userData.setLastName(etLastName.getText().toString());
+        userData.setUserType(spinner.getSelectedItem().toString());
+
+
+        db.collection("users").document(userId)
+                .set(userData)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+                            startActivity(intent);
+
+                        }else{
+                            Toast.makeText(RegistrationActivity.this, "registration unsuccessful",Toast.LENGTH_LONG).show();
+
+                        }
+
+                    }
+                });
     }
 
 

@@ -11,10 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.assignment.model.UserData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -51,9 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
+                           getData(task.getResult().getUser().getUid());//
                     }else{
                         Toast.makeText(LoginActivity.this,"Login Unsuccessful",Toast.LENGTH_LONG).show();
                         }
@@ -83,6 +85,24 @@ public class LoginActivity extends AppCompatActivity {
 
 
         return true;
+    }
+
+    private void getData(String userId){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(userId)
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+
+                    UserData userData = task.getResult().toObject(UserData.class);//getting result from Firabase and converting to userdata type
+                    Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+            }
+        })
+
     }
 
 }

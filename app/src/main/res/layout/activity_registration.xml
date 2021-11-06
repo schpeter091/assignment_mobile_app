@@ -65,6 +65,14 @@
         android:minHeight="48dp"
          />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        style="@style/Widget.AppCompat.Spinner.Underlined"/>
+
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="136dp"

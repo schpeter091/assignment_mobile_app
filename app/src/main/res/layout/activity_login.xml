@@ -39,7 +39,7 @@
         android:inputType="textPassword"
         android:minHeight="48dp"
 
-       />
+         />
 
     <Button
         android:id="@+id/btnLogin"

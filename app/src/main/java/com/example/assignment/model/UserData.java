@@ -1,6 +1,8 @@
 package com.example.assignment.model;
 
-public class UserData {
+import java.io.Serializable;
+
+public class UserData implements Serializable {
 
     private String firstName;
     private String lastName;

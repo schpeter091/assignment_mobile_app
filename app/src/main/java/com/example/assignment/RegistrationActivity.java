@@ -141,6 +141,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+                            intent.putExtra("USER_DATA",userData);
                             startActivity(intent);
 
                         }else{

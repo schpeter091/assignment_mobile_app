@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment">
         <activity
-            android:name=".HomeActivity"
-            android:screenOrientation="portrait"
+            android:name=".AddRestaurantActivity"
             android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

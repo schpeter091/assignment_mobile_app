@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                     UserData userData = task.getResult().toObject(UserData.class);//getting result from Firabase and converting to userdata type
                     Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("USER_DATA", userData);
                     startActivity(intent);
                 }
             }

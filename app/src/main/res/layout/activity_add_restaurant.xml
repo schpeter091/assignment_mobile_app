@@ -17,28 +17,29 @@
         />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/etRestaurantName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="restaurant name"
+        android:inputType="textPersonName" />
+
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/etSteetName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="street name"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/etPostCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="postcode"
+        android:inputType="textPersonName" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,6 +59,7 @@
             />
 
         <ImageView
+            android:id="@+id/picRestaurant"
             android:layout_width="200dp"
             android:layout_height="150dp"
             android:src="@drawable/ic_placeholder" />
@@ -65,7 +67,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_addRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"

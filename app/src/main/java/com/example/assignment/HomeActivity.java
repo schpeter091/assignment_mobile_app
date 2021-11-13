@@ -1,5 +1,6 @@
 package com.example.assignment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,8 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.assignment.model.RestaurantData;
 import com.example.assignment.model.UserData;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     Button buttonToHome;
@@ -32,6 +42,21 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        getData();
+
+    }
+
+    private void getData(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("restaurant")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    List<RestaurantData> restaurantDataList = task.getResult().toObjects(RestaurantData.class);
+                }
+            }
+        });
 
     }
 

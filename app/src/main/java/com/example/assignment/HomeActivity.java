@@ -2,6 +2,7 @@ package com.example.assignment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.assignment.adapter.RestaurantListAdapter;
 import com.example.assignment.model.RestaurantData;
 import com.example.assignment.model.UserData;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     Button buttonToHome;
     UserData userData;
     TextView textView;
+    RecyclerView rvRestaurant;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         userData = (UserData) getIntent().getSerializableExtra("USER_DATA");
         textView.setText("Welcome " + userData.getFirstName());
         buttonToHome = findViewById(R.id.btn_ToHome);
+        rvRestaurant = findViewById(R.id.rvRestaurant);
         buttonToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +46,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        getData();
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getData();
     }
 
     private void getData(){
@@ -54,6 +64,9 @@ public class HomeActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     List<RestaurantData> restaurantDataList = task.getResult().toObjects(RestaurantData.class);
+                    RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(restaurantDataList);
+                    rvRestaurant.setAdapter(restaurantListAdapter);
+
                 }
             }
         });

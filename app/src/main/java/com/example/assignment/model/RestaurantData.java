@@ -1,6 +1,8 @@
 package com.example.assignment.model;
 
-public class RestaurantData {
+import java.io.Serializable;
+
+public class RestaurantData implements Serializable {
 
     private String uid;
     private String imageUrl;

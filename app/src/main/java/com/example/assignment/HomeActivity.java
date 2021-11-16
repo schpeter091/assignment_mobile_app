@@ -23,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    Button buttonToHome;
+    Button buttonToProfile;
     UserData userData;
     TextView textView;
     RecyclerView rvRestaurant;
@@ -36,13 +36,14 @@ public class HomeActivity extends AppCompatActivity {
 
         userData = (UserData) getIntent().getSerializableExtra("USER_DATA");
         textView.setText("Welcome " + userData.getFirstName());
-        buttonToHome = findViewById(R.id.btn_ToHome);
+        buttonToProfile = findViewById(R.id.btn_ToProfile);
         rvRestaurant = findViewById(R.id.rvRestaurant);
-        buttonToHome.setOnClickListener(new View.OnClickListener() {
+        buttonToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, AddRestaurantActivity.class);
-                        startActivity(intent);
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                intent.putExtra("USER_DATA", userData);
+                startActivity(intent);
             }
         });
 
@@ -64,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     List<RestaurantData> restaurantDataList = task.getResult().toObjects(RestaurantData.class);
-                    RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(restaurantDataList);
+                    RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(restaurantDataList, userData);
                     rvRestaurant.setAdapter(restaurantListAdapter);
 
                 }

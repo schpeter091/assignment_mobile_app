@@ -20,6 +20,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -89,9 +90,10 @@ public class AddRestaurantActivity extends AppCompatActivity {
                                 restaurantData.setPostcode(postCode.getText().toString());
                                 restaurantData.setStreetName(streetName.getText().toString());
                                 restaurantData.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                DocumentReference document = db.collection("restaurant").document();
+                                restaurantData.setId(document.getId());
 
-
-                                db.collection("restaurant").document().set(restaurantData)
+                                document.collection("restaurant").document().set(restaurantData)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {

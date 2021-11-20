@@ -9,7 +9,7 @@ public class RestaurantData implements Serializable {
     private String name;
     private String postcode;
     private String streetName;
-
+    private String id;
     public String getUid() {
         return uid;
     }
@@ -48,5 +48,13 @@ public class RestaurantData implements Serializable {
 
     public void setStreetName(String streetName) {
         this.streetName = streetName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

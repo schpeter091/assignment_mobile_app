@@ -15,7 +15,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     TextView tvUserName, tvEmail, tvUserRole;
     UserData userData;
-    Button btnAddRestaurant;
+    Button btnAddRestaurant, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvUserName = findViewById(R.id.tvUserName);
         tvUserRole = findViewById(R.id.tvUserRole);
         btnAddRestaurant = findViewById(R.id.btnAddRestaurant);
+        btnLogout = findViewById(R.id.btnLogout);
         userData = (UserData) getIntent().getSerializableExtra("USER_DATA");
 
         tvEmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
@@ -36,6 +37,16 @@ public class ProfileActivity extends AppCompatActivity {
         }else{
             btnAddRestaurant.setVisibility(View.GONE);
         }
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(ProfileActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
 
         btnAddRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override

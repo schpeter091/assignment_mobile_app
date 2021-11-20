@@ -43,4 +43,10 @@
         android:layout_height="wrap_content"
         android:text="Add Restaurant"
         />
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        />
 </LinearLayout>

@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment">
         <activity
+            android:name=".AddReviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".RestaurantDetailActivity"
             android:exported="false" />
         <activity

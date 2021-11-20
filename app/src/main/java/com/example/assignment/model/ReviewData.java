@@ -8,6 +8,9 @@ public class ReviewData implements Serializable {
     private String review;
     private String postedBy;
 
+    public ReviewData() {
+    }
+
     public ReviewData(String restaurantId, String review, String postedBy) {
         this.restaurantId = restaurantId;
         this.review = review;

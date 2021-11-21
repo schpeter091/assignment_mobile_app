@@ -15,6 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment">
         <activity
+            android:name=".StreetFoodDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddStreetFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StreetFoodActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddReviewActivity"
             android:exported="false" />
         <activity

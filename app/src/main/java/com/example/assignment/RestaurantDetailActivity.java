@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,7 +33,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
     TextView tvRestaurant, tvAddress;
     ImageView imgRest;
-    Button btnAddReview;
+    Button btnAddReview, btnBook;
     RestaurantData restaurantData;
     UserData userData;
     RecyclerView rvReviews;
@@ -42,6 +46,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         imgRest = findViewById(R.id.imgRest);
         rvReviews = findViewById(R.id.rvReview);
         btnAddReview = findViewById(R.id.btnAddReview);
+        btnBook = findViewById(R.id.btnBook);
 
         userData = (UserData) getIntent().getSerializableExtra("USER_DATA");
         restaurantData = (RestaurantData) getIntent().getSerializableExtra("REST_DATA");
@@ -65,6 +70,13 @@ public class RestaurantDetailActivity extends AppCompatActivity {
             }
         });
 
+        btnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBookingCalendar();
+            }
+        });
+
     }
 
     @Override
@@ -82,5 +94,23 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void openBookingCalendar(){
+        final Calendar newCalendar = Calendar.getInstance();
+        final DatePickerDialog StartTime = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+
+                String url = "https://www.opentable.com/s/?covers=2&dateTime="+year+"-"+monthOfYear+"-"+dayOfMonth+"%"+year+"%3A00&metroId=72&regionIds=5316&pinnedRids%5B0%5D=87967&enableSimpleCuisines=true&includeTicketedAvailability=true&pageType=0";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+        StartTime.show();
     }
 }

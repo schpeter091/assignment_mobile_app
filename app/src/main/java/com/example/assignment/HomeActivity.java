@@ -23,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    Button buttonToProfile;
+    Button buttonToProfile, btnStreetFood;
     UserData userData;
     TextView textView;
     RecyclerView rvRestaurant;
@@ -38,6 +38,16 @@ public class HomeActivity extends AppCompatActivity {
         textView.setText("Welcome " + userData.getFirstName());
         buttonToProfile = findViewById(R.id.btn_ToProfile);
         rvRestaurant = findViewById(R.id.rvRestaurant);
+        btnStreetFood = findViewById(R.id.btnStreetFood);
+
+        btnStreetFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, StreetFoodActivity.class);
+                intent.putExtra("USER_DATA", userData);
+                startActivity(intent);
+            }
+        });
         buttonToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

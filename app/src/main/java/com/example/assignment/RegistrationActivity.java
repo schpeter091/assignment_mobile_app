@@ -131,6 +131,8 @@ public class RegistrationActivity extends AppCompatActivity {
         userData.setFirstName(etFirstName.getText().toString());
         userData.setLastName(etLastName.getText().toString());
         userData.setUserType(spinner.getSelectedItem().toString());
+        userData.setApproved(false);
+        userData.setUserId(userId);
 
 
         db.collection("users").document(userId)
@@ -139,10 +141,15 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
-                            intent.putExtra("USER_DATA",userData);
-                            startActivity(intent);
+                            if(userData.getUserType().equals("Critic")){
+                                Toast.makeText(RegistrationActivity.this, "Your critic account request has been sent for approval.", Toast.LENGTH_LONG).show();
+                                FirebaseAuth.getInstance().signOut();
+                            }else {
+                                Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+                                intent.putExtra("USER_DATA", userData);
+                                startActivity(intent);
+                            }
 
                         }else{
                             Toast.makeText(RegistrationActivity.this, "registration unsuccessful",Toast.LENGTH_LONG).show();

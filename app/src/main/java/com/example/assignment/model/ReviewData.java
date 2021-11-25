@@ -7,14 +7,17 @@ public class ReviewData implements Serializable {
     private String restaurantId;
     private String review;
     private String postedBy;
+    private String userId;
+    private String id;
 
     public ReviewData() {
     }
 
-    public ReviewData(String restaurantId, String review, String postedBy) {
+    public ReviewData(String restaurantId, String review, String postedBy, String userId) {
         this.restaurantId = restaurantId;
         this.review = review;
         this.postedBy = postedBy;
+        this.userId = userId;
     }
 
     public String getRestaurantId() {
@@ -39,5 +42,21 @@ public class ReviewData implements Serializable {
 
     public void setPostedBy(String postedBy) {
         this.postedBy = postedBy;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

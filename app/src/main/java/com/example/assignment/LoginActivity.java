@@ -94,12 +94,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
-
                     UserData userData = task.getResult().toObject(UserData.class);//getting result from Firabase and converting to userdata type
-                    Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    intent.putExtra("USER_DATA", userData);
-                    startActivity(intent);
+                    if(userData.isApproved() || userData.getUserType().equals("Admin") || userData.getUserType().equals("User")) {
+                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        intent.putExtra("USER_DATA", userData);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(LoginActivity.this, "Critic account is not approved by the admin", Toast.LENGTH_LONG).show();
+                        FirebaseAuth.getInstance().signOut();
+                    }
                 }
             }
         });

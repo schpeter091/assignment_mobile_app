@@ -99,7 +99,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
                                                     Toast.makeText(AddRestaurantActivity.this, " Upload successful", Toast.LENGTH_LONG).show();
-
+                                                    finish();
                                                 }
                                             }
                                         });

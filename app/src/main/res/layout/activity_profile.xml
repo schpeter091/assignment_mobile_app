@@ -4,49 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".ProfileActivity">
 
-   <TextView
-       android:id="@+id/tvUserName"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:textColor="@color/black"
-       android:layout_marginTop="50dp"
-       android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
     <TextView
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:layout_marginTop="30dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="User Role"
-        android:textSize="20sp"/>
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
     <TextView
         android:id="@+id/tvUserRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:textColor="@color/black"
-        android:layout_marginTop="30dp"
-        android:textSize="20sp"/>
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btnAddRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Restaurant"
-        />
+        android:text="Add Restaurant" />
+
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:text="Logout" />
+
+    <TextView
+        android:id="@+id/tvCritic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Critic List" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCritics"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 </LinearLayout>

@@ -7,6 +7,8 @@ public class UserData implements Serializable {
     private String firstName;
     private String lastName;
     private String userType;
+    private boolean isApproved;
+    private String userId;
 
     public String getFirstName() {
         return firstName;
@@ -30,5 +32,21 @@ public class UserData implements Serializable {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

@@ -93,7 +93,7 @@ public class AddRestaurantActivity extends AppCompatActivity {
                                 DocumentReference document = db.collection("restaurant").document();
                                 restaurantData.setId(document.getId());
 
-                                document.collection("restaurant").document().set(restaurantData)
+                                document.set(restaurantData)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {

@@ -57,9 +57,9 @@ public class StreetFoodActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-                    List<StreetFoodData> restaurantDataList = task.getResult().toObjects(StreetFoodData.class);
-                    StreetFoodAdapter restaurantListAdapter = new StreetFoodAdapter(restaurantDataList, userData);
-                    rvStreetFood.setAdapter(restaurantListAdapter);
+                    List<StreetFoodData> streetFoodDataList = task.getResult().toObjects(StreetFoodData.class);
+                    StreetFoodAdapter streetFoodAdapter = new StreetFoodAdapter(streetFoodDataList, userData);
+                    rvStreetFood.setAdapter(streetFoodAdapter);
 
                 }
             }

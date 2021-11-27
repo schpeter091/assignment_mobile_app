@@ -78,6 +78,7 @@ public class StreetFoodDetailActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     List<ReviewData> reviewDataList = task.getResult().toObjects(ReviewData.class);
                     rvReviews.setAdapter(new ReviewAdapter(reviewDataList));
+                    //+919855989824
                 }
             }
         });
